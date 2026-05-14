@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand: #1cb750;
+  --color-brand-600: #179a43;
+  --color-brand-50: #e8f8ed;
+
+  --color-ink: #0f172a;
+  --color-body: #475569;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-divider: #eef2f6;
+  --color-surface: #ffffff;
+  --color-surface-2: #f8fafc;
+
+  --color-trustpilot: #00b67a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: #ffffff;
+  color: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility */
+
+/* Visible focus indicator */
+:where(button, a, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.skip-to-content {
+  position: absolute;
+  left: 12px;
+  top: -40px;
+  z-index: 100;
+  border-radius: 8px;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: top 120ms ease;
+}
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 12px;
+  outline: none;
 }
